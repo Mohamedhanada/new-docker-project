@@ -1,0 +1,9 @@
+version: "3"
+services:
+  node-app:
+    build:            # اي تغيرات انا بعملها في البرودكشن م هتسمع عندي علي السيرفر عشان انا شيلت المسار بتاع الفوليم
+      context: . 
+      target: production
+    environment: 
+      - NODE_ENV=production 
+    command: npm start  
