@@ -71,7 +71,7 @@ mongoose
 
 app.get('/', (req, res) => {
     client.set('products','products...');
-    res.send('<h1> Hello Boska From AWS ! sir</h1>');
+    res.send('<h1> Hello Boska From AWS , using Docker Hup</h1>');
 });
 
 app.get('/data',async (req, res) => {

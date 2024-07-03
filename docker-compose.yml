@@ -2,6 +2,7 @@ version: "3"
 services:
   node-app:
     container_name: my-express-node-app
+    image: moha983/new-docker-image
     ports:
       - "4000:4000"
     env_file:
@@ -48,6 +49,10 @@ services:
     image: nginx:stable-alpine
     ports:
       - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/default.conf
+    depends_on:
+      - node-app  
 
 
 volumes:
