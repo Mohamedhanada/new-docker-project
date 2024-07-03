@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const redis = require('redis');
 const postgres = require('pg');
-const { pool } = require('./pool');
 
 
 
@@ -17,17 +16,20 @@ const app = express();
 //     password: 'password',
 //     port: 5432
 //     });
-const DB_User = 'root';
-const DB_Password = 'example';
-const DB_Port = 5432 ;
-const DB_Host = "postgres";
+// const DB_User = 'root';
+// const DB_Password = 'example';
+// const DB_Port = 5432 ;
+// const DB_Host = "postgres";
 
-const connectionString = `postgresql://${DB_User}:${DB_Password}@${DB_Host}:${DB_Port}`;
+// const connectionString = `postgresql://${DB_User}:${DB_Password}@${DB_Host}:${DB_Port}`;
 
-pool
-.connect()
-.then(() => console.log('connect to DB ... '))
-.catch((err) => console.log('failed to connect to db',err));
+// const pool = new Pool({
+//     URI : connectionString,
+// })
+// pool
+// .connect()
+// .then(() => console.log('connect to DB ... '))
+// .catch((err) => console.log('failed to connect to db',err));
 
 // mongoose.connect('mongodb://username:password@host:port/database?options...');
 
@@ -51,31 +53,30 @@ client.connect();
 
 
 // // connect to mongodb
-// const DB_User = 'root';
-// const DB_Password = 'example';
-// const DB_Port = 27017 ;
-// const DB_Host = "mongo"
+const DB_User = 'root';
+const DB_Password = 'example';
+const DB_Port = 27017 ;
+const DB_Host = "mongo"
 
-// // const DB_Host = "172.26.0.2"
-// const URI = `mongodb://${DB_User}:${DB_Password}@${DB_Host}:${DB_Port}`;
+// const DB_Host = "172.26.0.2"
+const URI = `mongodb://${DB_User}:${DB_Password}@${DB_Host}:${DB_Port}`;
 
-// mongoose
-// .connect(URI)
-// .then(() => console.log('connect to DB ... '))
-// .catch((err) => console.log('failed to connect to db',err));
+mongoose
+.connect(URI)
+.then(() => console.log('connect to DB ... '))
+.catch((err) => console.log('failed to connect to db',err));
 
-//mongoose.connect('mongodb://username:password@host:port/database?options...');
+// mongoose.connect('mongodb://username:password@host:port/database?options...');
 
 
 app.get('/', (req, res) => {
     client.set('products','products...');
-
-    res.send('<h1> Hello World ! sir</h1>')
+    res.send('<h1> Hello Boska From AWS ! sir</h1>');
 });
 
 app.get('/data',async (req, res) => {
-    const products = await client.get('products')
-    res.send(`<h1> Hello World !</h1><h2>${products}<h2>`)
+    const products = await client.get('products');
+    res.send(`<h1> Hello World !</h1><h2>${products}<h2>`);
 });
 
 app.listen(port, () => console.log(`app is up and run in port : ${port}`));

@@ -8,26 +8,26 @@ services:
       - ./.env
     volumes:
       - mongo_db:/data/db
-    depends_on: 
-      - postgres 
+    depends_on:
+      - mongo
       - redis 
 
-  postgres:
-    image: postgres
+  # postgres:
+  #   image: postgres
+  #   restart: always
+  #   volumes:
+  #     - postgres_db:/var/lib/postgresql/data 
+  #   environment:
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: example
+  mongo:
+    image: mongo
     restart: always
     volumes:
-      - postgres_db:/var/lib/postgresql/data 
+      - mongo_db:/data/db
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: example
-  #mongo:
-    #image: mongo
-    #restart: always
-    #volumes:
-    #  - mongo_db:/data/db
-    #environment:
-      #MONGO_INITDB_ROOT_USERNAME: root
-      #MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
 
  # mongo-express:
   #  image: mongo-express
@@ -40,8 +40,10 @@ services:
      # ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
     #depends_on:
      # - mongo  
+     
   redis: 
     image: redis
+
   nginx:
     image: nginx:stable-alpine
     ports:
@@ -53,4 +55,4 @@ services:
 
 volumes:
   mongo_db:
-  postgres_db:
+  # postgres_db:
