@@ -1,10 +1,10 @@
 version: "3"
 services:
   node-app:
-    container_name: my-express-node-app
+    #container_name: my-express-node-app
     image: moha983/new-docker-image
-    ports:
-      - "4000:4000"
+    #ports:
+      #- "4000:4000"
     env_file:
       - ./.env
     volumes:
@@ -50,7 +50,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx/default.conf:/etc/nginx/default.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - node-app  
 
