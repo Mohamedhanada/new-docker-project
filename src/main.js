@@ -71,7 +71,7 @@ mongoose
 app.get('/', (req, res) => {
     client.set('products','products...');
     console.log(`traffic from ${os.hostname}`)
-    res.send('<h1> Hello Boska</h1>');
+    res.send('<h1> Hello Boska ! watchtower</h1>');
 });
 
 app.get('/data',async (req, res) => {
